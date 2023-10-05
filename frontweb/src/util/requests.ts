@@ -3,7 +3,7 @@ import qs from 'qs';
 import history from './history';
 import jwtDecode from 'jwt-decode';
 
-type Role = 'ROLE OPERATOR' | 'ROLE_ADMIN';
+export type Role = 'ROLE OPERATOR' | 'ROLE_ADMIN';
 
 export type TokenData = {
   exp: number;
@@ -95,7 +95,7 @@ axios.interceptors.response.use(
     return response;
   },
   function (error) {
-    if (error.response.status === 401 || error.response.status === 403) {
+    if (error.response.status === 401) {
       history.push('/admin/auth');
     }
     return Promise.reject(error);
@@ -115,7 +115,7 @@ export const isAuthenticated = (): boolean => {
   return tokenData && tokenData.exp * 1000 > Date.now() ? true : false;
 };
 
-export const hasAnyRole = (roles: Role[]): boolean => {
+export const hasAnyRoles = (roles: Role[]): boolean => {
   if (roles.length === 0) {
     return true;
   }
