@@ -18,15 +18,16 @@ const Auth = () => {
 
       <div className="auth-form-container">
         <Switch>
-            <Route path="/admin/auth/login">
-                <Login/>
-            </Route>
-            <Route path="/admin/auth/signup">
-                <h1>Card de Signup</h1>
-            </Route>
-            <Route path="/admin/auth/recover">
-                <h1>Card de Recover</h1>
-            </Route>
+          <Route path="/admin/auth/login">
+            <Login />
+            
+          </Route>
+          <Route path="/admin/auth/signup">
+            <h1>Card de Signup</h1>
+          </Route>
+          <Route path="/admin/auth/recover">
+            <h1>Card de Recover</h1>
+          </Route>
         </Switch>
       </div>
     </div>
