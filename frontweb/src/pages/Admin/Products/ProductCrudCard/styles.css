@@ -48,9 +48,12 @@
     justify-content: space-between;
     padding-bottom: 0;
   }
+  .product-crud-card-top-container {
+    width: 200px;
+  }
   .product-crud-card-bottom-container {
     border-bottom: 0;
-    border-right: 1px solid #e1e1e1 ;
+    border-right: 1px solid #e1e1e1;
   }
   .product-crud-card-buttons-container {
     flex-direction: column-reverse;
@@ -70,8 +73,8 @@
     flex: 1;
   }
 }
-@media(min-width:992px) {
-     .product-crud-card-button {
-        width: 220px;
-     }
+@media (min-width: 992px) {
+  .product-crud-card-button {
+    width: 220px;
+  }
 }
