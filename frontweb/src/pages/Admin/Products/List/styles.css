@@ -26,9 +26,5 @@
     height: 60px;
     margin-bottom: 0;
   }
-  .product-filter-container {
-    margin-left: 20px;
-    flex: 1;
-    margin-bottom: 0;
-  }
+  
 }
