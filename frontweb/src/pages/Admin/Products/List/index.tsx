@@ -5,19 +5,19 @@ import { SpringPage } from 'types/vendor/spring';
 import { Product } from 'types/product';
 import { AxiosRequestConfig } from 'axios';
 import { requestBackend } from 'util/requests';
-
-import './styles.css';
 import Pagination from 'components/Pagination';
 import ProductFilter from 'components/ProductFilter';
+
+import './styles.css';
 
 type ControlComponentsData = {
   activePage: number;
 };
 
 const List = () => {
+
   const [page, setPage] = useState<SpringPage<Product>>();
-  const [controlComponentsData, setControlComponentsData] =
-    useState<ControlComponentsData>({
+  const [controlComponentsData, setControlComponentsData] = useState<ControlComponentsData>({
       activePage: 0,
     });
 
