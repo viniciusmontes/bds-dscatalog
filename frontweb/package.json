@@ -30,6 +30,8 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "5.0.1",
     "react-select": "^5.8.0",
+    "react-toastify": "7.0.4",
+    "react-toasty": "^0.0.4",
     "typescript": "^5.3.2",
     "web-vitals": "^2.1.4"
   },
