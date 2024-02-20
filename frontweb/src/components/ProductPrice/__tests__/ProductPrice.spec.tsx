@@ -3,13 +3,9 @@ import ProductPrice from '..';
 import { formatPrice } from 'util/formatters';
 
 test('should render ProductPrice', () => {
-
-  const price = 10.1
+  const price = 10.1;
 
   render(<ProductPrice price={price} />);
-
-
-  screen.debug()
 
   // espera que tenha no documento
   expect(screen.getByText('R$')).toBeInTheDocument();

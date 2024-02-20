@@ -16,7 +16,7 @@ test('should render ProductCard', () => {
   render(<ProductCard product={product}/>);
 
 
-  screen.debug()
+  
 
   // espera que tenha no documento
   expect(screen.getByText(product.name)).toBeInTheDocument();
