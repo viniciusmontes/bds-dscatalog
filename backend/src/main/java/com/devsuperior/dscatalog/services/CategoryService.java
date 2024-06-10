@@ -62,7 +62,7 @@ public class CategoryService {
 		try {
 			repository.deleteById(id);
 		}
-		catch (EmptyResultDataAccessException e) {
+		catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException("Id not found " + id);
 		}
 		catch (DataIntegrityViolationException e) {
