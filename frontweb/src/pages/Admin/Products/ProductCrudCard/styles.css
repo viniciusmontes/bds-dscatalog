@@ -48,6 +48,9 @@
     justify-content: space-between;
     padding-bottom: 0;
   }
+  .product-crud-bar-container a {
+    margin-right: 10px;
+  }
   .product-crud-card-top-container {
     width: 200px;
   }

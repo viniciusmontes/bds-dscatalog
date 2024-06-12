@@ -2,48 +2,73 @@ import ProductCard from 'components/ProductCard';
 import { Link } from 'react-router-dom';
 import { Product } from 'types/product';
 import Pagination from 'components/Pagination';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { SpringPage } from 'types/vendor/spring';
 import { AxiosRequestConfig } from 'axios';
 import { requestBackend } from 'util/requests';
 import CardLoader from './CardLoader';
 
 import './styles.css';
+import ProductFilter, { ProductFilterData } from 'components/ProductFilter';
+
+type ControlComponentsData = {
+  activePage: number;
+  filterData: ProductFilterData;
+};
 
 const Catalog = () => {
   const [page, setPage] = useState<SpringPage<Product>>();
+
   const [isLoading, setIsLoading] = useState(false);
 
-  const getProduts = (pageNumber: number) => {
-    const params: AxiosRequestConfig = {
+  const [controlComponentsData, setControlComponentsData] =
+    useState<ControlComponentsData>({
+      activePage: 0,
+      filterData: { name: '', category: null },
+    });
+
+  const getProducts = useCallback(() => {
+    const config: AxiosRequestConfig = {
       method: 'GET',
       url: '/products',
       params: {
-        page: pageNumber,
+        page: controlComponentsData.activePage,
         size: 12,
+        name: controlComponentsData.filterData.name,
+        categoryId: controlComponentsData.filterData.category?.id,
       },
     };
-
     setIsLoading(true);
-    requestBackend(params)
+    requestBackend(config)
       .then((response) => {
         setPage(response.data);
-        console.log(page);
       })
       .finally(() => {
         setIsLoading(false);
       });
-  };
+  }, [controlComponentsData]);
 
   useEffect(() => {
-    getProduts(0)
-  }, []);
+    getProducts();
+  }, [getProducts]);
+
+  const handlePageChange = (pageNumber: number) => {
+    setControlComponentsData({
+      activePage: pageNumber,
+      filterData: controlComponentsData.filterData,
+    });
+  };
+
+  const handleSubmitFilter = (data: ProductFilterData) => {
+    setControlComponentsData({ activePage: 0, filterData: data });
+  };
 
   return (
     <div className="container my-4 catalog-container">
       <div className="row catalog-title-container">
         <h1>Catálogo de produtos</h1>
       </div>
+      <ProductFilter onSubmitFilter={handleSubmitFilter} />
 
       <div className="row">
         {isLoading ? (
@@ -62,7 +87,7 @@ const Catalog = () => {
         <Pagination
           pageCount={page ? page.totalPages : 0}
           range={3}
-          onChange={getProduts}
+          onChange={handlePageChange}
         />
       </div>
     </div>
